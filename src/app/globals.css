@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.title {
+  @apply font-bold text-6xl sm:text-7xl;
+}
+
+.dropdown {
+  @apply absolute border right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 items-start shadow-xl;
+}
+
+.prompt-gradient {
+  @apply bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent p-1;
+}
