@@ -6,6 +6,10 @@
   @apply flex justify-center items-center;
 }
 
+.black-btn {
+  @apply rounded-full bg-black text-white font-medium px-4 py-2;
+}
+
 .title {
   @apply font-bold text-6xl sm:text-7xl;
 }
