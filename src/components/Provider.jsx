@@ -1,3 +1,5 @@
+// SessionProvider that wraps around the applicaiton ( Google )
+
 "use client";
 
 import { SessionProvider } from "next-auth/react";

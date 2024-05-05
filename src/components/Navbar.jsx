@@ -1,4 +1,5 @@
-// Navigation Bar
+//   Navigation
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -21,8 +22,8 @@ export const Navbar = () => {
 
   return (
     <nav className="flex w-full mb-16 pt-3 justify-between px-4 items-center mx-auto max-w-6xl">
-      <Link href="/" className="flex gap-2 flex-center">
-        <h1>Promptology</h1>
+      <Link href="/" className="flex gap-2 flex-center rounded-full">
+        <Image src="/logo.png" width={50} height={50} alt="Promptology" className="rounded-full"/>
       </Link>
       {/* Desktop */}
       <div className="sm:flex hidden">
@@ -31,11 +32,20 @@ export const Navbar = () => {
             <Link href="/prompts">
               <button className="border black-btn">Create Prompt</button>
             </Link>
-            <button className="border px-4 py-2 rounded-full border-black" onClick={() => signOut()}>
+            <button
+              className="border px-4 py-2 rounded-full border-black"
+              onClick={() => signOut()}
+            >
               Sign Out
             </button>
             <Link href="/profile">
-              <Image src={session?.user?.image} width={37} height={37} className="rounded-full" alt="profile-pic"/>
+              <Image
+                src={session?.user?.image}
+                width={37}
+                height={37}
+                className="rounded-full"
+                alt="profile-pic"
+              />
             </Link>
           </div>
         ) : (
@@ -58,12 +68,16 @@ export const Navbar = () => {
       <div className="flex relative sm:hidden hover:cursor-pointer">
         {session?.user ? (
           <div className="flex">
-            <div
-              className="w-[45px] h-[45px] bg-black rounded-full"
+            <Image
+              src={session?.user?.image}
+              width={37}
+              height={37}
+              className="rounded-full"
+              alt="profile-pic"
               onClick={() => {
                 setDrop(!drop);
               }}
-            ></div>
+            />
             {drop && (
               <div className="dropdown">
                 <Link href="/profile" onClick={() => setDrop(false)}>
