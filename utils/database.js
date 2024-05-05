@@ -1,11 +1,12 @@
+// DB Connection
+
 import mongoose from "mongoose";
 
 let isConnected = false; // track connection
 
 export const connectToDB = async () => {
-  
   mongoose.set("strictQuery", true);
-  
+
   if (isConnected) {
     console.log("Connected ✅");
     return;
@@ -18,9 +19,9 @@ export const connectToDB = async () => {
       useUnifiedTopology: true,
     });
 
-    isConnected = true
+    isConnected = true;
 
-    console.log('Connected ✅')
+    console.log("Connected ✅");
   } catch (err) {
     console.log(err);
   }

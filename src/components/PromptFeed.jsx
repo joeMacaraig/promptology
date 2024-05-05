@@ -1,40 +1,48 @@
-import React from "react";
-import {PromptCard} from '../components/PromptCard'
-const dummy = [
-  {
-    username: "example123",
-    email: "example123@example.com",
-    prompt:
-      "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
-    image: "image",
-  },
-  {
-    username: "example123",
-    email: "example123@example.com",
-    prompt:
-      "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
-    image: "image",
-  },
-  {
-    username: "example123",
-    email: "example123@example.com",
-    prompt:
-      "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
-    image: "image",
-  },
-  {
-    username: "example123",
-    email: "example123@example.com",
-    prompt:
-      "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
-    image: "image",
-  },
-];
+// Feed that shows prompts created by users
+
+"use client";
+
+import React, { useState, useEffect } from "react";
+
+// components
+import { PromptCard } from "../components/PromptCard";
+import { PromptList } from "../components/PromptList";
 
 export const PromptFeed = () => {
-  return <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 px-4">
-    {dummy.map((item) => (
-      <PromptCard {...item}/>
-    ))}
-  </section>;
+  //states
+  const [search, setSearch] = useState("");
+  const [prompts, setPrompts] = useState([]);
+
+  // handle input search
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleClick = () => {};
+
+  //get prompts
+  useEffect(() => {
+    const getPrompts = async () => {
+      const res = await fetch("/api/prompt");
+      const data = await res.json();
+      setPrompts(data);
+    };
+    getPrompts();
+  }, []);
+console.log(prompts)
+  return (
+    <section className="px-4 mt-8">
+      <form className="relative w-full ">
+        <input
+          type="text"
+          placeholder="search for prompts, tags, profiles..."
+          value={search}
+          onChange={handleSearch}
+          required
+          className="w-full border pl-4 py-2 rounded shadow-lg"
+        />
+      </form>
+      <PromptList data={prompts} handleClick={handleClick}/>
+    </section>
+  );
 };
