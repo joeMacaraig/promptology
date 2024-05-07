@@ -42,7 +42,7 @@ console.log(prompts)
           className="w-full border pl-4 py-2 rounded shadow-lg"
         />
       </form>
-      <PromptList data={prompts} handleClick={handleClick}/>
+      <PromptList data={prompts} handleClick={handleClick} search={search}/>
     </section>
   );
 };

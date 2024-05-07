@@ -2,7 +2,7 @@ import Image from "next/image";
 import { PromptFeed } from "../components/PromptFeed";
 export default function Home() {
   return (
-    <section className="max-w-6xl mx-auto flex-center flex-col gap-2 px-4">
+    <section className="max-w-6xl mx-auto flex-center flex-col gap-2 px-4 pb-4">
       <h1 className="flex-center title flex-col">
         Explore & Share
         <br></br>

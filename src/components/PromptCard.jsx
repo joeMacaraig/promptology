@@ -9,6 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 // icons
 import { FiCopy, FiCheckSquare, FiDelete, FiEdit } from "react-icons/fi";
+import Link from "next/link";
 
 export const PromptCard = ({
   prompt,
@@ -21,6 +22,12 @@ export const PromptCard = ({
   const { data: session } = useSession();
   const [copied, setCopied] = useState(false);
 
+  const handleProfile = () => {
+    if (prompt?.creator?._id != null) {
+      router.push(`/profile?id=${prompt.creator._id}`);
+    }
+  };
+
   const handleCopy = () => {
     setCopied(true);
     navigator.clipboard.writeText(prompt.prompt);
@@ -30,7 +37,10 @@ export const PromptCard = ({
     <div className="border border-black bg-white rounded-lg p-4 w-full h-full flex flex-col gap-2 shadow-lg">
       <div className="relative flex flex-col gap-4 pb-2">
         {/* profile details */}
-        <div className="flex justify-start items-center gap-4 cursor-pointer">
+        <div
+          className="flex justify-start items-center gap-4 hover:cursor-pointer"
+          onClick={handleProfile}
+        >
           <Image
             src={prompt.creator.image}
             alt="profile_picture"

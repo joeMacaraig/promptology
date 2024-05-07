@@ -7,6 +7,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
+import { Logo } from "./Logo";
+
 export const Navbar = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
@@ -23,7 +25,8 @@ export const Navbar = () => {
   return (
     <nav className="flex w-full mb-16 pt-3 justify-between px-4 items-center mx-auto max-w-6xl">
       <Link href="/" className="flex gap-2 flex-center rounded-full">
-        <Image src="/logo.png" width={50} height={50} alt="Promptology" className="rounded-full"/>
+        {/* <Image src="/logo.png" width={50} height={50} alt="Promptology" className="rounded-full"/> */}
+        <Logo />
       </Link>
       {/* Desktop */}
       <div className="sm:flex hidden">
@@ -38,7 +41,7 @@ export const Navbar = () => {
             >
               Sign Out
             </button>
-            <Link href="/profile">
+            <Link href={`/profile?id=${session?.user.id}`}>
               <Image
                 src={session?.user?.image}
                 width={37}

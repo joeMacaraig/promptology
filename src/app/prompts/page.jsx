@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 
 import { Form } from "../../components/Form";
 
+import Link from "next/link";
+
 const PromptPage = () => {
   const router = useRouter();
   const { data: session } = useSession();
@@ -54,7 +56,9 @@ const PromptPage = () => {
       ) : (
         <section className="flex items-center justify-center flex-col gap-2">
           <h1 className="text-4xl font-bold">To Create a Prompt, Sign In.</h1>
-          <p className="underline font-medium">Go to the home page.</p>
+          <Link href="/">
+            <p className="underline font-medium">Go to the home page.</p>
+          </Link>
         </section>
       )}
     </>

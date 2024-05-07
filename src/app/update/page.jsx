@@ -5,11 +5,12 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { Form } from "../../components/Form";
 
+import Link from "next/link";
+
 const UpdatePage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const promptId = searchParams.get("id");
-  console.log(promptId);
 
   const [prompt, setPrompt] = useState({ prompt: "", tag: "" });
   const [submit, setSubmit] = useState(false);
@@ -55,7 +56,7 @@ const UpdatePage = () => {
 
   return (
     <>
-      {session?.user ? (
+      {promptId ? (
         <section className="flex-center">
           <Form
             type="Edit/Update"
@@ -67,8 +68,12 @@ const UpdatePage = () => {
         </section>
       ) : (
         <section className="flex items-center justify-center flex-col gap-2">
-          <h1 className="text-4xl font-bold">To Update Your Prompts, Sign In.</h1>
-          <p className="underline font-medium">Go to the home page.</p>
+          <h1 className="text-4xl font-bold">
+            To Update Your Prompts, Sign In.
+          </h1>
+          <Link href="/">
+            <p className="underline font-medium">Go to the home page.</p>
+          </Link>
         </section>
       )}
     </>
